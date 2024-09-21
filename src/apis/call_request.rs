@@ -1,10 +1,92 @@
+//! This module provides functionality to call the OpenAI GPT API for generating chat completions.
+//!
+//! # Overview
+//!
+//! The `call_gpt` function sends a list of messages to the OpenAI GPT API and retrieves the generated response.
+//! It uses the `reqwest` library to make HTTP requests and handles API key and organization ID through environment variables.
+//!
+//! # Environment Variables
+//!
+//! - `OPEN_AI_KEY`: The API key for authenticating with the OpenAI API.
+//! - `OPEN_AI_ORG`: The organization ID for the OpenAI API.
+//!
+//! # Functions
+//!
+//! - `call_gpt`: Asynchronously sends a list of messages to the OpenAI GPT API and returns the generated response as a `Result<String, Box<dyn std::error::Error + Send>>`.
+//!
+//! # Example
+//!
+//! ```rust
+//! use crate::apis::call_request::call_gpt;
+//! use crate::models::general::llm::Message;
+//!
+//! #[tokio::main]
+//! async fn main() {
+//!     let message = Message {
+//!         role: "user".to_string(),
+//!         content: "Hello, how are you?".to_string(),
+//!     };
+//!     let messages = vec![message];
+//!
+//!     match call_gpt(messages).await {
+//!         Ok(response) => println!("Response: {}", response),
+//!         Err(e) => eprintln!("Error: {}", e),
+//!     }
+//! }
+//! ```
+//!
+//! # Tests
+//!
+//! The module includes a test function `tests_call_to_openai` that verifies the `call_gpt` function by sending a test message and checking the response.
 use crate::models::general::llm::{APIResponse, ChatCompletion, Message};
 use dotenv::dotenv;
 use reqwest::header::{HeaderMap, HeaderValue};
 use reqwest::Client;
 use std::env;
 
-// Call Large Language Model
+/// Asynchronously sends a list of messages to the OpenAI GPT API and returns the generated response.
+///
+/// This function constructs an HTTP request to the OpenAI GPT API using the provided messages,
+/// and retrieves the generated response. It handles the API key and organization ID through
+/// environment variables `OPEN_AI_KEY` and `OPEN_AI_ORG`.
+///
+/// # Arguments
+///
+/// * `messages` - A vector of `Message` structs representing the conversation history.
+///
+/// # Returns
+///
+/// A `Result` which is:
+/// * `Ok(String)` containing the generated response from the OpenAI GPT API.
+/// * `Err(Box<dyn std::error::Error + Send>)` if there was an error during the request.
+///
+/// # Errors
+///
+/// This function will return an error if:
+/// * The environment variables `OPEN_AI_KEY` or `OPEN_AI_ORG` are not set.
+/// * There is an issue with constructing the HTTP request.
+/// * The HTTP request to the OpenAI GPT API fails.
+///
+/// # Example
+///
+/// ```rust
+/// use crate::apis::call_request::call_gpt;
+/// use crate::models::general::llm::Message;
+///
+/// #[tokio::main]
+/// async fn main() {
+///     let message = Message {
+///         role: "user".to_string(),
+///         content: "Hello, how are you?".to_string(),
+///     };
+///     let messages = vec![message];
+///
+///     match call_gpt(messages).await {
+///         Ok(response) => println!("Response: {}", response),
+///         Err(e) => eprintln!("Error: {}", e),
+///     }
+/// }
+/// ```
 pub async fn call_gpt(messages: Vec<Message>) -> Result<String, Box<dyn std::error::Error + Send>> {
     dotenv().ok();
 
