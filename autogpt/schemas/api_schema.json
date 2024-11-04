@@ -1,0 +1,13 @@
+[
+  {
+    "route": "/weather",
+    "is_route_dynamic": "false",
+    "method": "get",
+    "request_body": "None",
+    "response": {
+      "id": "number",
+      "description": "string",
+      "temperature": "number"
+    }
+  }
+]
