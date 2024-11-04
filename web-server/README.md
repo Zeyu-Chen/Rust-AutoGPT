@@ -15,13 +15,7 @@ Note: Do not modify `main.rs` directly as it is generated code. Any base functio
 
 ### Setup & Running
 
-1. Clone the repository
-
-```bash
-git clone <repository-url>
-```
-
-2. Install dependencies
+1. Install dependencies
 
 ```bash
 cargo build
