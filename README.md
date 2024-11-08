@@ -1,5 +1,10 @@
 # Multi-Agent Code Generator
 
+[![Rust](https://img.shields.io/badge/Rust-1.8-000000?logo=rust&logoColor=white)](https://www.rust-lang.org/)
+[![Actix Web](https://img.shields.io/badge/Actix_Web-4.3-000000?logo=rust&logoColor=white)](https://actix.rs/)
+[![OpenAI](https://img.shields.io/badge/OpenAI-v1-412991?logo=openai&logoColor=white)](https://openai.com/)
+[![Tokio](https://img.shields.io/badge/Tokio-1.28-0BA8E9?logo=rust&logoColor=white)](https://tokio.rs/)
+
 A multi-agent code generator system powered by OpenAI that automatically converts user requirements into a complete Rust web server implementation.
 
 ## Core Features
