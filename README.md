@@ -1,6 +1,6 @@
 # Multi-Agent Code Generator
 
-An intelligent code generation system powered by GPT-4 that automatically converts user requirements into a complete Rust web server implementation.
+A multi-agent code generator system powered by OpenAI that automatically converts user requirements into a complete Rust web server implementation.
 
 ## Core Features
 
