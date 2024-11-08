@@ -1,4 +1,4 @@
-# Rust AutoGPT Code Generator
+# Multi-Agent Code Generator
 
 An intelligent code generation system powered by GPT-4 that automatically converts user requirements into a complete Rust web server implementation.
 
